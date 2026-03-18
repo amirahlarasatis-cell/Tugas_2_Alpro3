@@ -1,17 +1,70 @@
-/*
-Capt Dodo memiliki beberapa pilihan transportasi untuk bepergian dari tempat magang ke kampus dan kembali lagi:
+#include <iostream>
 
-- Bus Hijau: Biaya Rp5.000. Beroperasi dari pukul 7 -18.
-- Bus Linus : Gratis, tetapi hanya tersedia pada pukul 6 - 8 dan 15 - 17.
-- Angkot: Biaya Rp10.000. Selalu tersedia tanpa batasan waktu.
+using namespace std;
 
-Karena Capt dodo adalah seorang anak kos, ia ingin menghemat pengeluaran transportasi semaksimal mungkin. 
+int cekTransportasi(int jam) {
+    if ((jam >= 6 && jam <= 8) || (jam >= 15 && jam <= 17)) {
+        return 1;
+    }
+    else if (jam >= 7 && jam <= 18) {
+        return 2;
+    }
+  else {
+        return 3;
+    }
+}
 
-Diberikan dua input, yaitu:
-Jam keberangkatan (bilangan bulat 1-24)
-Jam kepulangan (bilangan bulat 1-24)
+int main() {
+    int jamBerangkat, jamPulang;
+    int totalBiaya = 0;
+    int kode; // Variabel untuk menyimpan kode transportasi (1/2/3)
 
-Buatlah program untuk menentukan moda transportasi yang dipilih untuk berangkat dan pulang dengan total biaya seminimal mungkin. 
-*/
+    // Input jam keberangkatan dan kepulangan
+    cout << "Masukkan jam keberangkatan (1-24): ";
+    cin >> jamBerangkat;
+    cout << "Masukkan jam kepulangan (1-24): ";
+    cin >> jamPulang;
 
-// Hapus komentar yang berisi soal sebelum memasukkan kode untuk jawaban
+
+    kode = cekTransportasi(jamBerangkat);
+    cout << "Transportasi Berangkat: ";
+
+    // Cek kode untuk menentukan output dan biaya
+    switch (kode) {
+        case 1:
+            cout << "Bus Linus" << endl;
+            totalBiaya += 0; // Gratis
+            break;
+        case 2:
+            cout << "Bus Hijau" << endl;
+            totalBiaya += 5000;
+            break;
+        default: // Case 3
+            cout << "Angkot" << endl;
+            totalBiaya += 10000;
+            break;
+    }
+
+    kode = cekTransportasi(jamPulang);
+    cout << "Transportasi Pulang   : ";
+
+    // Cek kode untuk menentukan output dan biaya
+    switch (kode) {
+        case 1:
+            cout << "Bus Linus" << endl;
+            totalBiaya += 0; // Gratis
+            break;
+        case 2:
+            cout << "Bus Hijau" << endl;
+            totalBiaya += 5000;
+            break;
+        default: // Case 3
+            cout << "Angkot" << endl;
+            totalBiaya += 10000;
+            break;
+    }
+
+    cout << "Total Biaya           : Rp " << totalBiaya << endl;
+
+    return 0;
+}
