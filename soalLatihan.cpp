@@ -1,16 +1,56 @@
-/*
-Pak Budi adalah seorang pedagang yang harus mengirim barang setiap hari ke beberapa kota. Dia memiliki tiga pilihan jasa ekspedisi untuk mengirim barang berdasarkan berat dan tujuan pengiriman:
-1. JNE
-- Biaya Rp10.000/kg untuk pengiriman dalam kota.
-- Biaya Rp20.000/kg untuk pengiriman luar kota.
-- Diskon 50% jika berat barang lebih dari 10 kg.
-2. SiCepat
-- Biaya Rp8.000/kg untuk pengiriman dalam kota.
-- Biaya Rp18.000/kg untuk pengiriman luar kota.
-- Gratis ongkir jika berat barang lebih dari 15 kg.
-3. Gojek
-- Hanya bisa mengirim dalam kota dengan biaya Rp12.000/kg.
-- Diskon Rp10.000 jika berat barang lebih dari 5 kg.
-*/
+#include <iostream>
+using namespace std;
 
-// Hapus komentar yang berisi soal sebelum memasukkan kode untuk jawaban
+int main() {
+    int pilihan, tujuan;
+    double berat, totalBiaya = 0;
+
+    cout << "1. JNE" << endl;
+    cout << "2. SiCepat" << endl;
+    cout << "3. Gojek" << endl;
+    cout << "Pilih kurir (1/2/3) : ";
+    cin >> pilihan;
+
+    cout << "Berat barang (kg) : ";
+    cin >> berat;
+
+    if (pilihan == 1) {
+        cout << "Tujuan (1. Dalam Kota, 2. Luar Kota): ";
+        cin >> tujuan;
+        if (tujuan == 1) 
+            totalBiaya = berat * 10000;
+        else 
+            totalBiaya = berat * 20000;
+
+        if (berat > 10) {
+            totalBiaya = totalBiaya * 0.5; // Diskon 50%
+            cout << "(Diskon 50% karena berat > 10 kg)" << endl;
+        }
+    } 
+    else if (pilihan == 2) {
+        cout << "Tujuan (1. Dalam Kota, 2. Luar Kota): ";
+        cin >> tujuan;
+        if (tujuan == 1) 
+            totalBiaya = berat * 8000;
+        else 
+            totalBiaya = berat * 18000;
+
+        if (berat > 15) {
+            totalBiaya = 0;
+            cout << "(Gratis ongkir karena barang lebih dari 15 kg)" << endl;
+        }
+    } 
+    else if (pilihan == 3) {
+        totalBiaya = berat * 12000;
+        if (berat > 5) {
+            totalBiaya = totalBiaya - 10000; // Potongan 10rb
+            cout << "(Diskon Rp10.000 karena berat > 5 kg)" << endl;
+        }
+    } 
+    else {
+        cout << "Pilihan tidak valid" << endl;    }
+
+    cout << "Total Bayar : Rp " << totalBiaya << endl;
+
+    return 0;
+}
